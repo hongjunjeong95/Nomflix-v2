@@ -15,7 +15,6 @@ export const movieApi = {
         append_to_response: "videos",
       },
     }),
-  latest: () => api.get("movie/latest"),
   popular: () => api.get("movie/popular"),
   top_rated: () => api.get("movie/top_rated"),
   now_playing: () => api.get("movie/now_playing"),
