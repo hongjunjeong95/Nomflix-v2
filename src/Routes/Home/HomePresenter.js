@@ -1,3 +1,8 @@
+import styled from "styled-components";
+import Loader from "Components/Loader";
+
+const Container = styled.section``;
+
 export default ({
   popular,
   top_rated,
@@ -6,5 +11,5 @@ export default ({
   error,
   loading,
 }) => {
-  return <div>Home</div>;
+  return <>{loading ? <Loader></Loader> : <div>Movies</div>}</>;
 };
