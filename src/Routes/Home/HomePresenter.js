@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
+
 import Loader from "Components/Loader";
 import Section from "Components/Section";
 
@@ -6,7 +8,7 @@ const Container = styled.section`
   padding: 10px;
 `;
 
-export default ({
+const HomePresenter = ({
   popular,
   top_rated,
   now_playing,
@@ -53,3 +55,14 @@ export default ({
     </>
   );
 };
+
+HomePresenter.propTypes = {
+  popular: PropTypes.array,
+  top_rated: PropTypes.array,
+  now_playing: PropTypes.array,
+  upcoming: PropTypes.array,
+  error: PropTypes.string,
+  loading: PropTypes.bool.isRequired,
+};
+
+export default HomePresenter;

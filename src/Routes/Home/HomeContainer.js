@@ -2,7 +2,7 @@ import { movieApi } from "api";
 import React from "react";
 import HomePresenter from "./HomePresenter";
 
-export default class extends React.Component {
+class HomeContainer extends React.Component {
   state = {
     popular: null,
     top_rated: null,
@@ -65,3 +65,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default HomeContainer;
