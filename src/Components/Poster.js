@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import noPosterSmall from "../assets/noPosterSmall.png";
 
 const Container = styled.section``;
 
@@ -59,7 +60,7 @@ export default ({
           bgUrl={
             poster_img
               ? `https://image.tmdb.org/t/p/w300${poster_img}`
-              : require("../assets/noPosterSmall.png")
+              : noPosterSmall
           }
         ></Image>
         <Rating>
@@ -70,7 +71,7 @@ export default ({
         </Rating>
       </ImageContainer>
       <Title>{title}</Title>
-      <Year>{year}</Year>
+      <Year>{year === undefined ? "" : year.substring(0, 4)}</Year>
     </SLink>
   </Container>
 );

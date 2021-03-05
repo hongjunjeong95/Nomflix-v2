@@ -23,7 +23,7 @@ const TVPresenter = ({ airing_today, popular, top_rated, error, loading }) => {
                   key={tv.id}
                   id={tv.id}
                   backdrop_img={tv.backdrop_path}
-                  title={tv.original_title}
+                  title={tv.original_name}
                   overview={tv.overview}
                   poster_img={tv.poster_path}
                   rating={tv.vote_average}
@@ -39,7 +39,7 @@ const TVPresenter = ({ airing_today, popular, top_rated, error, loading }) => {
                   key={tv.id}
                   id={tv.id}
                   backdrop_img={tv.backdrop_path}
-                  title={tv.original_title}
+                  title={tv.original_name}
                   overview={tv.overview}
                   poster_img={tv.poster_path}
                   rating={tv.vote_average}
@@ -55,7 +55,7 @@ const TVPresenter = ({ airing_today, popular, top_rated, error, loading }) => {
                   key={tv.id}
                   id={tv.id}
                   backdrop_img={tv.backdrop_path}
-                  title={tv.original_title}
+                  title={tv.original_name}
                   overview={tv.overview}
                   poster_img={tv.poster_path}
                   rating={tv.vote_average}
