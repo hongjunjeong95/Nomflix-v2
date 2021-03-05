@@ -11,6 +11,7 @@ const Header = styled.div`
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 50px;
+  z-index: 10;
 `;
 
 const List = styled.ul`
