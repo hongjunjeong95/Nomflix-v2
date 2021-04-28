@@ -28,6 +28,7 @@ const MoviePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => (
               title={movie.original_title}
               rating={movie.vote_average}
               year={movie.release_date.substring(0, 4)}
+              isMovie={true}
             />
           ))}
         </Section>
@@ -40,6 +41,7 @@ const MoviePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => (
               title={movie.original_title}
               rating={movie.vote_average}
               year={movie.release_date.substring(0, 4)}
+              isMovie={true}
             />
           ))}
         </Section>
@@ -52,6 +54,7 @@ const MoviePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => (
               title={movie.original_title}
               rating={movie.vote_average}
               year={movie.release_date.substring(0, 4)}
+              isMovie={true}
             />
           ))}
         </Section>
