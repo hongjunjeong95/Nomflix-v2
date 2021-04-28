@@ -32,7 +32,6 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://zpskek.github.io//Nomflix-v2",
   "browserslist": {
     "production": [
       ">0.2%",
