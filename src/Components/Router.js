@@ -1,24 +1,27 @@
-import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from "react-router-dom";
-import Home from "Routes/Home";
-import TV from "Routes/TV";
+import Movie from "Routes/Movie";
 import Search from "Routes/Search";
+import TV from "Routes/TV";
+import Detail from "Routes/Detail";
 import Header from "./Header";
 
-// eslint-disable-next-line
 export default () => (
   <Router>
-    <Header />
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/tv" component={TV} />
-      <Route path="/search" component={Search} />
-      <Redirect from="*" to="/" />
-    </Switch>
+    <>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Movie} />
+        <Route exact path="/tv" component={TV} />
+        <Route exact path="/search" component={Search} />
+        <Route exact path="/movie/:id" component={Detail} />
+        <Route exact path="/tv/:id" component={Detail} />
+        <Redirect from="*" to="/"></Redirect>
+      </Switch>
+    </>
   </Router>
 );

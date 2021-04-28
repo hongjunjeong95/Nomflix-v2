@@ -1,40 +1,43 @@
+import Helmet from "react-helmet";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Loader from "Components/Loader";
-import Section from "Components/Section";
 import Poster from "Components/Poster";
+import Section from "Components/Section";
 
-const Container = styled.section`
-  padding: 10px;
+const Container = styled.div`
+  padding: 20px;
 `;
 
 const Form = styled.form`
-  width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 `;
 
 const Input = styled.input`
   all: unset;
+  font-size: 20px;
   width: 100%;
-  font-size: 28px;
 `;
 
 const SearchPresenter = ({
   movieResults,
   tvResults,
+  loading,
   searchTerm,
   handleSubmit,
   updateTerm,
   error,
-  loading,
 }) => (
   <Container>
+    <Helmet>
+      <title>Search | Nomflix</title>
+    </Helmet>
     <Form onSubmit={handleSubmit}>
       <Input
         placeholder="Search Movies or TV Shows..."
-        onChange={updateTerm}
         value={searchTerm}
+        onChange={updateTerm}
       />
     </Form>
     {loading ? (
@@ -42,33 +45,30 @@ const SearchPresenter = ({
     ) : (
       <>
         {movieResults && movieResults.length > 0 && (
-          <Section title="Now Playing">
+          <Section title="Movie Results">
             {movieResults.map((movie) => (
               <Poster
                 key={movie.id}
                 id={movie.id}
-                backdrop_img={movie.backdrop_path}
+                imageUrl={movie.poster_path}
                 title={movie.original_title}
-                overview={movie.overview}
-                poster_img={movie.poster_path}
                 rating={movie.vote_average}
-                year={movie.release_date}
+                year={movie.release_date?.substring(0, 4)}
+                isMovie={true}
               />
             ))}
           </Section>
         )}
         {tvResults && tvResults.length > 0 && (
-          <Section title="Upcoming">
+          <Section title="TV Show Results">
             {tvResults.map((tv) => (
               <Poster
                 key={tv.id}
                 id={tv.id}
-                backdrop_img={tv.backdrop_path}
+                imageUrl={tv.poster_path}
                 title={tv.original_name}
-                overview={tv.overview}
-                poster_img={tv.poster_path}
                 rating={tv.vote_average}
-                year={tv.first_air_date}
+                year={tv.first_air_date?.substring(0, 4)}
               />
             ))}
           </Section>

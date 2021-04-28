@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const Container = styled.section`
   :not(:last-child) {
@@ -8,7 +8,7 @@ const Container = styled.section`
 `;
 
 const Title = styled.h2`
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 600;
 `;
 

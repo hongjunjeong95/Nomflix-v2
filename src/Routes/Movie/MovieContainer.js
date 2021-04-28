@@ -1,12 +1,12 @@
-import { tvApi } from "api";
+import { moviesApi } from "api";
 import React from "react";
-import TVPresenter from "./TVPresenter";
+import MoviePresenter from "./MoviePresenter";
 
 export default class extends React.Component {
   state = {
     loading: true,
-    airingToday: null,
-    topRated: null,
+    nowPlaying: null,
+    upcoming: null,
     popular: null,
     error: null,
   };
@@ -14,18 +14,18 @@ export default class extends React.Component {
   async componentDidMount() {
     try {
       const {
-        data: { results: airingToday },
-      } = await tvApi.airingToday();
+        data: { results: nowPlaying },
+      } = await moviesApi.nowPlaying();
       const {
-        data: { results: topRated },
-      } = await tvApi.topRated();
+        data: { results: upcoming },
+      } = await moviesApi.upcoming();
       const {
         data: { results: popular },
-      } = await tvApi.popular();
+      } = await moviesApi.popular();
 
       this.setState({
-        airingToday,
-        topRated,
+        nowPlaying,
+        upcoming,
         popular,
       });
     } catch {
@@ -39,11 +39,11 @@ export default class extends React.Component {
     }
   }
   render() {
-    const { airingToday, topRated, popular, error, loading } = this.state;
+    const { nowPlaying, upcoming, popular, error, loading } = this.state;
     return (
-      <TVPresenter
-        airingToday={airingToday}
-        topRated={topRated}
+      <MoviePresenter
+        nowPlaying={nowPlaying}
+        upcoming={upcoming}
         popular={popular}
         error={error}
         loading={loading}
