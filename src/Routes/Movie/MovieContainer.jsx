@@ -1,53 +1,48 @@
+import React, { memo, useState } from "react";
+import { useQuery } from "react-query";
+
 import { moviesApi } from "api";
-import React from "react";
 import MoviePresenter from "./MoviePresenter";
 
-export default class extends React.Component {
-  state = {
-    loading: true,
-    nowPlaying: null,
-    upcoming: null,
-    popular: null,
-    error: null,
-  };
+const MovieContainer = memo(() => {
+  const [error, setError] = useState(null);
 
-  async componentDidMount() {
-    try {
-      const {
-        data: { results: nowPlaying },
-      } = await moviesApi.nowPlaying();
-      const {
-        data: { results: upcoming },
-      } = await moviesApi.upcoming();
-      const {
-        data: { results: popular },
-      } = await moviesApi.popular();
+  const {
+    data: dataNowPlaying,
+    isLoading: isLoadingNowPlaying,
+    status: statusNowPlaying,
+    error: errorNowPlaying,
+  } = useQuery("movie_now_playing", moviesApi.nowPlaying);
 
-      this.setState({
-        nowPlaying,
-        upcoming,
-        popular,
-      });
-    } catch {
-      this.setState({
-        error: "Can't find movie information.",
-      });
-    } finally {
-      this.setState({
-        loading: false,
-      });
-    }
+  const {
+    data: dataUpcoming,
+    isLoading: isLoadingUpcoming,
+    status: statusUpcoming,
+    error: errorUpcoming,
+  } = useQuery("movie_upcoming", moviesApi.upcoming);
+
+  const {
+    data: dataPopular,
+    isLoading: isLoadingPopular,
+    status: statusPopular,
+    error: errorPopular,
+  } = useQuery("movie_popular", moviesApi.popular);
+
+  if (errorNowPlaying || errorUpcoming || errorPopular) {
+    setError(errorNowPlaying);
   }
-  render() {
-    const { nowPlaying, upcoming, popular, error, loading } = this.state;
-    return (
-      <MoviePresenter
-        nowPlaying={nowPlaying}
-        upcoming={upcoming}
-        popular={popular}
-        error={error}
-        loading={loading}
-      />
-    );
-  }
-}
+
+  return (
+    <MoviePresenter
+      nowPlaying={
+        statusNowPlaying === "success" ? dataNowPlaying?.data?.results : []
+      }
+      upcoming={statusUpcoming === "success" ? dataUpcoming?.data.results : []}
+      popular={statusPopular === "success" ? dataPopular?.data.results : []}
+      error={error}
+      loading={isLoadingNowPlaying || isLoadingUpcoming || isLoadingPopular}
+    />
+  );
+});
+
+export default MovieContainer;
